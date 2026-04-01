@@ -13,7 +13,13 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
       - ./seeder.sql:/docker-entrypoint-initdb.d/02-seeder.sql:ro
 
-  lang:
+  c:
+    image: gcc:14
+    container_name: legacy_c
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: tail -f /dev/null
 
 volumes:
   postgres_data:
